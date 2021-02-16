@@ -4,7 +4,6 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 class ClientController {
-
     ClientService clientService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -96,4 +95,25 @@ class ClientController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+/*    def login={}
+
+    def authenticate = {
+        def user = Client.findByUserNameAndPassword(params.userName,params.password)
+        if(user){
+            session.user = user
+            flash.message = "Hello ${user.firstName}!"
+            redirect(action: "login")
+        }else {
+            flash.message = "Sorry, ${user.firstName}. Please try again"
+            redirect(action: "login")
+        }
+    }
+
+    def logout = {
+        flash.message = "Thank you ${session.user.firstName}!"
+        session.user =null
+        redirect(action: "login")
+
+    }*/
 }

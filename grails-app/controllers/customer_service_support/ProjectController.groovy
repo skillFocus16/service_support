@@ -96,4 +96,11 @@ class ProjectController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    /*def auth(){
+        if (!session.user){
+            redirect(controller:"Client", action: "login")
+            return false
+        }
+    }*/
 }

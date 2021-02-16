@@ -2,7 +2,7 @@ package customer_service_support
 
 class RequestForm {
 
-    String requestFormId
+    String ticketID
     String title
     String description
     String comments
@@ -10,10 +10,10 @@ class RequestForm {
     static belongsTo = [client:Client, project:Project]
 
     static constraints = {
-        requestFormId unique: true
+        ticketID unique: true
         title size: 3..20, blank: false
         description blank: false
-        comments blank: true //optional
+        comments blank: false //optional
         createdAt blank: false
     }
 }
