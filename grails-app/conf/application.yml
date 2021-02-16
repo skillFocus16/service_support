@@ -141,6 +141,10 @@ environments:
 ---
 server:
     port: 8687
+spring:
+    h2:
+      console:
+          enabled: true
 #spring:
 #    datasource:
 #        pooled: true

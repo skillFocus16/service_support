@@ -1,5 +1,6 @@
 package customer_service_support
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
@@ -8,19 +9,23 @@ class ClientController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond clientService.list(params), model:[clientCount: clientService.count()]
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show(Long id) {
         respond clientService.get(id)
     }
 
+    @Secured('ROLE_ADMIN')
     def create() {
         respond new Client(params)
     }
 
+    @Secured('ROLE_ADMIN')
     def save(Client client) {
         if (client == null) {
             notFound()
@@ -43,10 +48,12 @@ class ClientController {
         }
     }
 
+    @Secured('ROLE_ADMIN')
     def edit(Long id) {
         respond clientService.get(id)
     }
 
+    @Secured('ROLE_ADMIN')
     def update(Client client) {
         if (client == null) {
             notFound()
@@ -69,6 +76,7 @@ class ClientController {
         }
     }
 
+    @Secured('ROLE_ADMIN')
     def delete(Long id) {
         if (id == null) {
             notFound()
