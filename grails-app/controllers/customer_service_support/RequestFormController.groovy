@@ -4,8 +4,6 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 class RequestFormController {
-//    def scaffold =true
-
     RequestFormService requestFormService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

@@ -141,18 +141,18 @@ environments:
 ---
 server:
     port: 8687
-spring:
-    datasource:
-        pooled: true
-        jmxExport: true
-        driver-class-name: com.mysql.jdbc.Driver
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        username: root
-        password: 'Naamini@93'
-        dbCreate: update
-        url: "jdbc:mysql://localhost:3306/customer_service?useSSL=false"
-    environments:
-        development:
-            dataSource:
-                dbCreate: update
-                url: "jdbc:mysql://localhost:3306/customer_service?useSSL=false"
+#spring:
+#    datasource:
+#        pooled: true
+#        jmxExport: true
+#        driver-class-name: com.mysql.jdbc.Driver
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        username: root
+#        password: 'Naamini@93'
+#        dbCreate: update
+#        url: "jdbc:mysql://localhost:3306/customer_service?useSSL=false"
+#    environments:
+#        development:
+#            dataSource:
+#                dbCreate: update
+#                url: "jdbc:mysql://localhost:3306/customer_service?useSSL=false"
