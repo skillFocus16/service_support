@@ -14,7 +14,7 @@
                 <g:if test='${flash.message}'>
                     <div class="alert alert-danger" role="alert">${flash.message}</div>
                 </g:if>
-                <form class="form-signin" action="register" method="POST" id="loginForm" autocomplete="off">
+                <g:form class="form-signin" action="register" method="POST" id="loginForm" autocomplete="off">
                     <div class="form-group">
                         <label for="role">Role</label>
                         <g:select class="form-control" name="role.id"
@@ -45,7 +45,7 @@
                     <button id="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                     <hr class="my-4">
                     <p>Already have an account? <g:link controller="login" action="auth">Login</g:link></p>
-                </form>
+                </g:form>
             </div>
         </div>
     </div>

@@ -19,10 +19,19 @@ class RegisterController {
             return
         } else {
             try {
-                def user = User.findByUsername(params.username)?: new User(username: params.username, password: params.password, fullname: params.fullname).save()
-                def role = Role.get(params.role.id)
+                def user = User.findByUsername(params.username)
+                if(!user){
+                    user=new User(username: params.username, password: params.password, fullname: params.fullname)
+                    user.save(failOnError:true)
+                }
+
+               def role = Role.get(params.role.id)
+                //def role = Role.findByName('ROLE_USER')
+                println "user "+user
+                println "user "+role
                 if(user && role) {
-                    UserRole.create user, role
+                      UserRole.create user, role
+                      //UserRole.create user, role,true
 
                     UserRole.withSession {
                         it.flush()
@@ -37,7 +46,7 @@ class RegisterController {
                     return
                 }
             } catch (ValidationException e) {
-                flash.message = "Register Failed"
+                flash.message = "Register Failed "+e
                 redirect action: "index"
                 return
             }

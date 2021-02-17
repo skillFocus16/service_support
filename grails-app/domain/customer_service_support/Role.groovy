@@ -11,9 +11,11 @@ class Role implements Serializable {
 
 	private static final long serialVersionUID = 1
 
-	String authority
+	String authority,name,description
 
 	static constraints = {
+		name nullable: true
+		description nullable: true
 		authority nullable: false, blank: false, unique: true
 	}
 
