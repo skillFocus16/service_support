@@ -1,5 +1,6 @@
 package customer_service_support
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
@@ -9,19 +10,23 @@ class ProjectController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN','ROLE_USER','ROLE_CLIENT'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond projectService.list(params), model:[projectCount: projectService.count()]
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_USER','ROLE_CLIENT'])
     def show(Long id) {
         respond projectService.get(id)
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_CLIENT'])
     def create() {
         respond new Project(params)
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_CLIENT'])
     def save(Project project) {
         if (project == null) {
             notFound()
@@ -43,11 +48,12 @@ class ProjectController {
             '*' { respond project, [status: CREATED] }
         }
     }
-
+    @Secured(['ROLE_ADMIN','ROLE_USER','ROLE_CLIENT'])
     def edit(Long id) {
         respond projectService.get(id)
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_USER','ROLE_CLIENT'])
     def update(Project project) {
         if (project == null) {
             notFound()
@@ -70,6 +76,7 @@ class ProjectController {
         }
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_CLIENT'])
     def delete(Long id) {
         if (id == null) {
             notFound()
